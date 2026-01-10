@@ -6,25 +6,247 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>885</width>
+    <height>543</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Sistema Veterinario C++</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <property name="styleSheet">
+   <string notr="true">/* 1. Fondo General (Para evitar bordes blancos) */
+QMainWindow {
+    background-color: #fdfbf7 ;
+}
+
+/* 2. La barra de menu a color blanco para que combine con el fondo */
+QMenuBar {
+    background-color: rgb(40, 40, 40);        /* Fondo BLANCO puro */
+    border-bottom: 2px solid rgb(52, 73, 94);   /* Una línea oscura abajo para separar */
+    min-height: 15px;                                        /* Altura mínima para que no se vea aplastada */
+}
+
+/* 3. Las letras del menu cambiamos a otro color pra que se distingan*/
+QMenuBar::item {
+	background-color: transparent;      /*Fondo Transparente por defecto*/
+	color: rgb(255, 255, 255);                             /*Letra a color negro para que se vea*/
+	padding: 5px 15px;                          /*Espacio para que no este muy junto*/
+}
+
+
+
+/* 2. Menú Lateral (Izquierda) - Negro Azulado */
+QWidget#menuLateral {
+    background-color: #2c3e50;
+    border-right: 1px solid #485460; /* Línea separadora sutil */
+}
+
+/* 3. Panel Central (Derecha) - Gris Oscuro */
+QWidget#panelCentral {
+    background-color: #fdfbf7;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="menuLateral" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="registrarPaciente">
+         <property name="text">
+          <string>Registrar Paciente</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="salir">
+         <property name="text">
+          <string>Salir</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="panelCentral" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="pageRegistro">
+          <layout class="QFormLayout" name="formLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelNombre">
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>NOMBRE</string>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="1">
+            <widget class="QPushButton" name="buttonGuardar">
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>Guardar Paciente</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="txtEspecie"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelEspecie">
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>ESPECIE</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="labelRaza">
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>RAZA</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="labelEdad">
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>EDAD</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="labelDuenio">
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>DUEÑO</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="labelTelefono">
+             <property name="styleSheet">
+              <string notr="true">color: black;</string>
+             </property>
+             <property name="text">
+              <string>TELEFONO</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="txtRaza"/>
+           </item>
+           <item row="3" column="1">
+            <widget class="QSpinBox" name="spnEdad"/>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLineEdit" name="txtDuenio"/>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLineEdit" name="txtTelefono"/>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="txtNombre"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_2"/>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>21</height>
+     <width>885</width>
+     <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_Archivo">
+    <property name="title">
+     <string>&amp;Archivo</string>
+    </property>
+    <addaction name="action_Salir"/>
+   </widget>
+   <addaction name="menu_Archivo"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_Salir">
+   <property name="text">
+    <string>&amp;Salir</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
