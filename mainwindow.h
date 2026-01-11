@@ -1,9 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
 #include <QMainWindow>
-#include <QSqlTableModel>      // <--- AÑADE ESTA LÍNEA
-#include <QSortFilterProxyModel> // <--- AÑADE ESTA LÍNEA
-#include <QMainWindow>
+#include <QFile>
+#include <QTextStream>
+#include <QStringListModel>
+#include <QSortFilterProxyModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,19 +23,19 @@ public:
 
 private slots:
     void on_action_Salir_triggered();
-
     void on_registrarPaciente_clicked();
-
     void on_buttonGuardar_clicked();
-
     void on_txtBuscar_textChanged(const QString &texto);
-
     void on_btnIrBuscar_clicked();
-
 
 private:
     Ui::MainWindow *ui;
-    QSqlTableModel *modelo;           // Para leer la base de datos
-    QSortFilterProxyModel *proxyModel; // Para los filtros de búsqueda
+    QStringListModel *modelo;
+    QSortFilterProxyModel *proxyModel;
+
+    // Ruta del archivo
+    const QString nombreArchivo = "pacientes.txt";
 };
+
 #endif // MAINWINDOW_H
+
