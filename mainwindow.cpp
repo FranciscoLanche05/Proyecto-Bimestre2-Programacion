@@ -53,16 +53,18 @@ void MainWindow::on_buttonGuardar_clicked()
         QMessageBox::information(this, "Éxito",
                                  "Se guardó la mascota: " + nombre + "\nDueño: " + dueno);
 
-        // --- FUNCIÓN DE LIMPIEZA DE CAMPOS TRAS REGISTRO ---
+    // 3. LIMPIEZA DE CAMPOS
         ui->txtNombre->clear();
-        ui->txtEspecie->clear();
+        ui->txtEspecie->clear(); // O setCurrentIndex(0) si es combo
         ui->txtRaza->clear();
+        ui->spnEdad->setValue(0);
         ui->txtDuenio->clear();
         ui->txtTelefono->clear();
-        ui->spnEdad->setValue(0);
-        ui->txtNombre->setFocus(); // Opcional: pone el cursor en el primer campo
-    } else {
-        QMessageBox::critical(this, "Error", "No se pudo abrir el archivo para guardar.");
+
+        // Poner el cursor al inicio
+        ui->txtNombre->setFocus();
+
+        QMessageBox::information(this, "Éxito", "Paciente guardado correctamente.");
     }
 }
 
