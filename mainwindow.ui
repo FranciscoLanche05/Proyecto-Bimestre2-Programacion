@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Sistema Veterinario C++</string>
+   <string>VetSystem Pro</string>
   </property>
   <property name="styleSheet">
    <string notr="true">/* 1. Fondo General (Para evitar bordes blancos) */
@@ -63,6 +63,9 @@ QWidget#panelCentral {
     <property name="bottomMargin">
      <number>0</number>
     </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <item row="0" column="0">
      <widget class="QWidget" name="menuLateral" native="true">
       <property name="enabled">
@@ -76,9 +79,44 @@ QWidget#panelCentral {
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+        <widget class="QLabel" name="label_2">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="recursos.qrc">:/logo.png/Gemini_Generated_Image_sv1tn4sv1tn4sv1t.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="registrarPaciente">
          <property name="text">
           <string>Registrar Paciente</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnIrBuscar">
+         <property name="text">
+          <string>Consultar Pacientes</string>
          </property>
         </widget>
        </item>
@@ -119,6 +157,77 @@ QWidget#panelCentral {
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
+         <property name="styleSheet">
+          <string notr="true">/* --- 1. FONDO GRIS MEDIO (El tono que te gustó) --- */
+QStackedWidget {
+    background-color: #e6e6e6; /* Gris profesional */
+    
+    /* TU MARCA DE AGUA */
+    /* Si la imagen no sale, recuerda usar el botón Add Resource para buscarla */
+    background-image: url(:/logo.png/imageedit_2_3907597263.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+/* --- 2. PÁGINAS TRANSPARENTES --- */
+#pageRegistro, #pageTabla {
+    background: transparent;
+}
+
+/* --- 3. CORRECCIÓN DEL LABEL NEGRO (Aquí está el arreglo) --- */
+QLabel {
+    color: #263238;                /* Texto gris oscuro */
+    background-color: transparent; /* &lt;--- ESTA LÍNEA BORRA EL CUADRO NEGRO */
+    font-weight: bold;
+    font-size: 16px;               /* Le subí un poco para que sea un título claro */
+    border: none;
+}
+
+/* --- 4. CAJAS DE TEXTO (Inputs) --- */
+QLineEdit, QSpinBox {
+    background-color: #ffffff;
+    border: 1px solid #b0bec5;
+    border-radius: 4px;
+    padding: 6px;
+    color: #263238;
+}
+QLineEdit:focus, QSpinBox:focus {
+    border: 2px solid #009688; /* Verde Teal al escribir */
+}
+
+/* --- 5. TABLA (Blanca y limpia) --- */
+QTableView {
+    background-color: #ffffff;
+    alternate-background-color: #f5f5f5;
+    color: #333333;
+    gridline-color: #cfd8dc;
+    border: 1px solid #90a4ae;
+    selection-background-color: #b2dfdb; /* Color suave al seleccionar */
+    selection-color: #004d40;
+}
+QHeaderView::section {
+    background-color: #cfd8dc;
+    padding: 5px;
+    border: 1px solid #b0bec5;
+    font-weight: bold;
+    color: #37474f;
+}
+
+/* --- 6. BOTÓN GUARDAR --- */
+QPushButton#buttonGuardar {
+    background-color: #009688;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+QPushButton#buttonGuardar:hover {
+    background-color: #00796b;
+}</string>
+         </property>
          <property name="currentIndex">
           <number>1</number>
          </property>
@@ -218,6 +327,37 @@ QWidget#panelCentral {
           <property name="enabled">
            <bool>true</bool>
           </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="frameShape">
+              <enum>QFrame::Shape::StyledPanel</enum>
+             </property>
+             <property name="text">
+              <string>Listado de pacientes</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="txtBuscar"/>
+           </item>
+           <item>
+            <widget class="QTableView" name="tableView">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
@@ -232,7 +372,7 @@ QWidget#panelCentral {
      <x>0</x>
      <y>0</y>
      <width>885</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Archivo">
@@ -249,6 +389,8 @@ QWidget#panelCentral {
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>

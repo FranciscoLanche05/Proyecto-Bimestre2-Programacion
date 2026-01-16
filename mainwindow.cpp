@@ -3,12 +3,48 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
+#include <QHeaderView>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // 1. Título e Icono de la ventana
+    this->setWindowTitle("VetSystem Pro");
+    this->setWindowIcon(QIcon(":/recursos/logo.png")); // Asegúrate que la ruta sea correcta
+
+    // 2. Textos de ayuda (Placeholders)
+    // Esto hace que aparezca el texto gris "Ej: Firulais" cuando la caja está vacía
+    ui->txtNombre->setPlaceholderText("Ej: Firulais");
+    ui->txtEspecie->setPlaceholderText("Ej: Perro, Gato...");
+    ui->txtRaza->setPlaceholderText("Ej: Labrador");
+    ui->txtDuenio->setPlaceholderText("Nombre del propietario");
+    ui->txtTelefono->setPlaceholderText("Ej: 0991234567");
+
+    // Configuración para la tabla (Mejora visual extra)
+    ui->spnEdad->setValue(0); // Empezar en 0
+
+    // Inicializamos el modelo para la tabla
+    modelo = new QStandardItemModel(this);
+
+    // Definimos los nombres de las columnas
+    QStringList titulos;
+    titulos << "Nombre" << "Especie" << "Raza" << "Edad" << "Dueño" << "Teléfono";
+
+    // Ponemos los títulos en el modelo
+    modelo->setHorizontalHeaderLabels(titulos);
+
+    // Conectamos el modelo a la tabla visual
+    ui->tableView->setModel(modelo);
+
+    // AJUSTES VISUALES DE LA TABLA
+    // Que las columnas se estiren para llenar el espacio
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    // Que no se pueda escribir directamente en la tabla (solo lectura)
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 MainWindow::~MainWindow()

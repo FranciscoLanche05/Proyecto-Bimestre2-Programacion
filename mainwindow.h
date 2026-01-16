@@ -4,13 +4,10 @@
 #include <QMainWindow>
 #include <QFile>
 #include <QTextStream>
-#include <QStringListModel>
-#include <QSortFilterProxyModel>
+#include <QStandardItemModel>
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -30,12 +27,11 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QStringListModel *modelo;
-    QSortFilterProxyModel *proxyModel;
 
-    // Ruta del archivo
+    // Usamos QStandardItemModel porque permite filas Y columnas
+    QStandardItemModel *modelo;
+
     const QString nombreArchivo = "pacientes.txt";
 };
 
 #endif // MAINWINDOW_H
-
