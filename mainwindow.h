@@ -24,14 +24,17 @@ private slots:
     void on_buttonGuardar_clicked();
     void on_txtBuscar_textChanged(const QString &texto);
     void on_btnIrBuscar_clicked();
+    // 1. Añadimos el slot para el botón "Consultar Pacientes" de tu interfaz
+    void on_btnConsultar_clicked();
 
 private:
     Ui::MainWindow *ui;
-
-    // Usamos QStandardItemModel porque permite filas Y columnas
     QStandardItemModel *modelo;
-
     const QString nombreArchivo = "pacientes.txt";
+
+    // 2. Añadimos la definición del método lógico de lectura
+    // Esto quita el error "Out-of-line definition" en el archivo .cpp
+    void cargarDatosDesdeArchivo();
 };
 
 #endif // MAINWINDOW_H

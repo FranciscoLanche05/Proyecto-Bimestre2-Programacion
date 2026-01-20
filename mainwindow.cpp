@@ -109,9 +109,52 @@ void MainWindow::on_txtBuscar_textChanged(const QString &texto)
 {
 }
 
+void MainWindow::cargarDatosDesdeArchivo()
+{
+    // 1. Limpiar el modelo para evitar duplicidad de datos al recargar
+    modelo->removeRows(0, modelo->rowCount());
+
+    // 2. Definir y validar la existencia del archivo
+    QFile archivo("pacientes.txt");
+
+    if (!archivo.exists()) {
+        QMessageBox::information(this, "Aviso", "No se encontraron registros previos.");
+        return;
+    }
+
+    // 3. Lógica de lectura línea por línea
+    if (archivo.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream entrada(&archivo);
+
+        while (!entrada.atEnd()) {
+            QString linea = entrada.readLine();
+            QStringList campos = linea.split(";");
+
+            // Validamos que la línea sea íntegra (6 columnas según el registro)
+            if (campos.size() == 6) {
+                QList<QStandardItem *> fila;
+                for (const QString &valor : campos) {
+                    fila.append(new QStandardItem(valor));
+                }
+                modelo->appendRow(fila);
+            }
+        }
+        archivo.close();
+    } else {
+        QMessageBox::critical(this, "Error", "No se pudo acceder al archivo de datos.");
+    }
+}
 void MainWindow::on_btnIrBuscar_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->pageTabla);
+    cargarDatosDesdeArchivo();
 }
+
+void MainWindow::on_btnConsultar_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->pageTabla);
+    cargarDatosDesdeArchivo();
+}
+
 
 
