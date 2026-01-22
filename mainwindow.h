@@ -42,6 +42,8 @@ private:
     // 2. Añadimos la definición del método lógico de lectura
     // Esto quita el error "Out-of-line definition" en el archivo .cpp
     void cargarDatosDesdeArchivo();
+    void actualizarArchivoDesdeModelo();
+
 
     //filtro para la busqueda de datos por nombre
     QSortFilterProxyModel *proxyModel;
