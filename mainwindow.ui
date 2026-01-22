@@ -402,18 +402,12 @@ QPushButton#buttonGuardar:hover {
      <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_Archivo">
-    <property name="title">
-     <string>&amp;Archivo</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
      <string>Ayuda</string>
     </property>
     <addaction name="actionAcerca_de_VetSystem_Pro"/>
    </widget>
-   <addaction name="menu_Archivo"/>
    <addaction name="menuAyuda"/>
   </widget>
   <action name="actionAcerca_de_VetSystem_Pro">

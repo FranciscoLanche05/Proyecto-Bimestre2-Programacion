@@ -23,7 +23,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_action_Salir_triggered();
     void on_registrarPaciente_clicked();
     void on_buttonGuardar_clicked();
     void on_txtBuscar_textChanged(const QString &texto);
@@ -33,6 +32,8 @@ private slots:
     void on_tabledatos_customContextMenuRequested(const QPoint &pos);
 
     void on_actionAcerca_de_VetSystem_Pro_triggered();
+
+    void on_btnSalir_clicked();
 
 private:
     Ui::MainWindow *ui;

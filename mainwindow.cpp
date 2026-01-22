@@ -205,9 +205,23 @@ void MainWindow::on_tabledatos_customContextMenuRequested(const QPoint &pos)
     menu->popup(ui->tabledatos->viewport()->mapToGlobal(pos));
 }
 
-void MainWindow::on_action_Salir_triggered() { this->close(); }
 
 void MainWindow::on_actionAcerca_de_VetSystem_Pro_triggered()
 {
     QMessageBox::about(this, "Créditos", "Sistema Veterinario v1.0\nDesarrollado por Francisco Lanche y Sebastian Villagomes.");
 }
+
+void MainWindow::on_btnSalir_clicked()
+{
+    // Preguntar al usuario si está seguro
+    QMessageBox::StandardButton respuesta;
+    respuesta = QMessageBox::question(this, "Confirmar Salida",
+                                      "¿Estás seguro que deseas cerrar el sistema?",
+                                      QMessageBox::Yes | QMessageBox::No);
+
+    //Si dice que SÍ, cerramos la aplicación
+    if (respuesta == QMessageBox::Yes) {
+        QApplication::quit(); //Cierra todo el programa limpiamente
+    }
+}
+
